@@ -1,0 +1,21 @@
+/* Using the greater than symbol or child combinator means apply style specifically when element to right is the child */
+
+.sidebar-channel:hover > h4 { 
+  color: white;
+  background-color: #40464b;
+}
+
+/* adds a hand pointer, text color gray to the base h4 child of sidebar-channel */
+ .sidebar-channel > h4 {
+   display: flex;
+   padding-left: 15px;
+   align-items: center;
+   background-color: #2f3135;
+   color: gray;
+   cursor: pointer;
+ }
+
+ .sidebar-channel-hash {
+   font-size: 30px;
+   padding: 8px;
+ }
