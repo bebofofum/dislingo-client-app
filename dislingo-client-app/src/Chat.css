@@ -1,0 +1,49 @@
+.chat-panel {
+  display: flex;
+  flex-direction: column;
+  flex: 0.75;
+  background-color: #363a3f;
+  height: 100vh;
+
+}
+
+
+.chat-input {
+  display: flex;
+  color: lightgray;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  border-radius: 5px;
+  margin: 20px;
+  background-color: #474b53;
+  border-top: 1px solid #26282c;
+}
+
+.chat-input > form > input {
+  padding: 15px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline-width: 0px;
+  color: white;
+  font-size: large;
+}
+
+.chat-input > form {
+  flex: 1;
+}
+
+.chat-input-submit-button {
+  display: none;
+}
+
+.chat-input-icons > .MuiSvgIcon-root {
+  padding: 5px;
+
+}
+
+/* flex with 1 tell it to give this area as much room as possible? */
+.chat-area {
+  flex: 1; 
+}
