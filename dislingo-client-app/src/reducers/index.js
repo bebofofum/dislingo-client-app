@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux'
 
-import counterReducer from '../features/counterSlice';
+import userReducer from '../features/userSlice';
+import appReducer from '../features/appSlice';
 
 export default combineReducers({
-  counter: counterReducer
+  user: userReducer,
+  app: appReducer
 })
