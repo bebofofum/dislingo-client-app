@@ -13,6 +13,7 @@ const MessageItem = () => {
             UserName
             <span className="message-timestamp">timestamp</span>
           </h4>
+          <p>This is the message</p>
          </div>
     </section>
   )
