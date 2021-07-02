@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import "../Sidebar.css";
-import SidebarChannelListItem from './SidebarChannel'
+import SidebarChannelList from './SidebarChannelList';
+
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AddIcon from '@material-ui/icons/Add';
 import SignalCellularAltIcon from '@material-ui/icons/SignalCellularAlt';
@@ -10,16 +13,39 @@ import Avatar from '@material-ui/core/Avatar';
 import MicIcon from '@material-ui/icons/Mic';
 import HeadsetIcon from '@material-ui/icons/Headset';
 import SettingsIcon from '@material-ui/icons/Settings';
-import { useSelector } from 'react-redux';
+
 import { selectUser } from '../features/userSlice';
-import { auth } from '../firebase';
+import database, { auth } from '../firebase';
 
 
 const Sidebar = () => {
   const user = useSelector(selectUser);
+  const [channels, setChannels] = useState([])
+
+  useEffect(() => { //setChannels is the function that sets the value for channels from useState
+    database.collection('channels').onSnapshot(response => {
+      let channelCollect = response.docs.map(eachRes => ({
+        id: eachRes.id,
+        channel: eachRes.data()}));
+      setChannels(channelCollect)
+      console.log(channelCollect)
+    }  
+      )
+  }, [])
 
   const onHandleClick = () => {
     auth.signOut()
+  }
+
+  const onHandleAddChannelIcon = () => {
+    const newChannelName = prompt('Enter a Channel Name'); //I think I can later add a prompt styled compoent here rather than an generic prompt
+
+    if (newChannelName) {
+      database.collection('channels').add({
+         channelName: newChannelName
+      })
+    }
+
   }
 
   return (
@@ -37,12 +63,10 @@ const Sidebar = () => {
             <ExpandMoreIcon />
             <h4>Text Channel</h4>
           </div>
-          <AddIcon className="sidebar-addchannel" />
+          <AddIcon onClick={onHandleAddChannelIcon} className="sidebar-addchannel" />
         </div>
         <div className="sidebar-channellist">
-        <SidebarChannelListItem />
-        <SidebarChannelListItem />
-        <SidebarChannelListItem />
+          {channels.map((channelInfo) => <SidebarChannelList channelId={channelInfo.id} channelName={channelInfo.channel.channelName} />)}
         </div> 
       </div>
       <div className="sidebar-voice">
