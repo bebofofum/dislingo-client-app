@@ -8,17 +8,18 @@ import { createSlice } from '@reduxjs/toolkit';
 export const appSlice = createSlice({
   name: "app",
   initialState: {
-     channelId: [],
-     channelName: ""
+     channelId: null,
+     channelName: null
   },
   reducers: {
-    setChannelId: (state,action) => {
-      state.app += action.payload;
+    setChannelDetails: (state,action) => {
+      state.channelId = action.payload.channelId;
+      state.channelName = action.payload.channelName;
     }
   }
 })
 
-export const { setChannelId } = appSlice.actions;
+export const { setChannelDetails } = appSlice.actions;
 
 
 export const selectChannelId = (state) => state.app.channelId;
