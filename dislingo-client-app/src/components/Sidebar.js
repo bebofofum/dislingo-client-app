@@ -37,7 +37,7 @@ const Sidebar = () => {
     auth.signOut()
   }
 
-  const onHandleAddChannelIcon = () => {
+  const onHandleAddChannel = () => {
     const newChannelName = prompt('Enter a Channel Name'); //I think I can later add a prompt styled compoent here rather than an generic prompt
 
     if (newChannelName) {
@@ -63,10 +63,15 @@ const Sidebar = () => {
             <ExpandMoreIcon />
             <h4>Text Channel</h4>
           </div>
-          <AddIcon onClick={onHandleAddChannelIcon} className="sidebar-addchannel" />
+          <AddIcon onClick={onHandleAddChannel} className="sidebar-addchannel" />
         </div>
         <div className="sidebar-channellist">
-          {channels.map((channelInfo) => <SidebarChannelList channelId={channelInfo.id} channelName={channelInfo.channel.channelName} />)}
+          {channels.map(({ id, channel }) => 
+              <SidebarChannelList 
+              key={id} 
+              id={id} 
+              channelName={channel.channelName} />
+          )}
         </div> 
       </div>
       <div className="sidebar-voice">
