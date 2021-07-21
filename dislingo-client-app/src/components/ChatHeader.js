@@ -7,7 +7,7 @@ import PeopleAltRoundedIcon from '@material-ui/icons/PeopleAltRounded';
 import SendRoundedIcon from '@material-ui/icons/SendRounded';
 import HelpRoundedIcon from '@material-ui/icons/HelpRounded';
 
-const ChatHeader = () => {
+const ChatHeader = ({ channelName }) => {
   return (
     <section className="chat-header">
       <div className="chat-header-left">
@@ -15,7 +15,7 @@ const ChatHeader = () => {
           <span className="chat-header-hashtag">
             #
           </span>
-          Test Channel Name
+          {channelName}
         </h3>
 
       </div>
