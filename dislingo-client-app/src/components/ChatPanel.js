@@ -20,8 +20,8 @@ const ChatPanel = () => {
   return (
     <section className="chat-panel">
       <ChatHeader channelName={channelName} />
-      <ChatMessages />    
-      <ChatInput channelId={channelId} channelName={channelName} />
+      <ChatMessages channelId={channelId} />    
+      <ChatInput user={user} channelId={channelId} channelName={channelName} />
 
     </section>
   )
