@@ -4,16 +4,16 @@ import Avatar from '@material-ui/core/Avatar';
 
 
 
-const MessageItem = () => {
+const MessageItem = ({ timestamp, message, user }) => {
   return(
     <section className="message">
       <Avatar src="https://avatars.githubusercontent.com/u/8239774?v=4" />
          <div className="message-contents"> 
           <h4>
-            UserName
-            <span className="message-timestamp">timestamp</span>
+            {user.name}
+            <span className="message-timestamp">{new Date(timestamp?.toDate()).toUTCString()}</span>
           </h4>
-          <p>This is the message</p>
+          <p>{message}</p>
          </div>
     </section>
   )
